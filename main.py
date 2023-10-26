@@ -15,14 +15,17 @@ def qsort(a, pivot_fn):
     return qsort(left, pivot_fn) + center + qsort(right, pivot_fn)
 
 
-
-def ssort(L):
-    for i in range(len(L)):
-        print(L)
-        m = L.index(min(L[i:]))
-        L[i], L[m] = L[m], L[i]
-    return L
-
+#we could not figure out the implementation of ssort since it was not given to us
+#this was the implementation given in the slides but it made an infinite loop
+#sorry
+#def ssort(L):
+#    for i in range(len(L)):
+#        print(L)
+#        m = L.index(min(L[i:]))
+#        L[i], L[m] = L[m], L[i]
+#    return L
+#sposed to be a call here w an array
+#ssort_call = ssort([0])
 
 def fix_pivot(a):
   return a[0]
@@ -71,7 +74,7 @@ def compare_sort(sizes=[100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 10
   
     qsort_fixed_pivot = lambda a: qsort(a, fix_pivot)
     qsort_random_pivot = lambda a: qsort(a, random_pivot)
-  
+    #ssort_call = ssort(sizes)
     tim_sort = sorted
     result = []
     for size in sizes:
@@ -84,7 +87,7 @@ def compare_sort(sizes=[100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 10
             time_search(qsort_fixed_pivot, mylist),
             time_search(qsort_random_pivot, mylist),
             time_search(tim_sort, mylist),#since we wanna see timsort too
-            #time_search(ssort, mylist)
+            #time_search(ssort_call, mylist)
         ])
     return result
     ###
