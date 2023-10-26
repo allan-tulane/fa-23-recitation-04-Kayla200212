@@ -23,7 +23,7 @@ so you will have to curry `qsort` to test different methods of
 choosing pivots. Implement variants of `qsort` that correspond to
 selecting the first element of the input list as the pivot, and to
 selecting a random pivot.
-.  
+.  +-
 .  
 .  
 .  

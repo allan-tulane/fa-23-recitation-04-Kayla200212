@@ -13,8 +13,22 @@ def qsort(a, pivot_fn):
     center = list(filter(lambda x: x==pivot, a))#x in list is the pivot
     right = list(filter(lambda x: x>pivot, a))#x in list is bigger than pivot is right
     return qsort(left, pivot_fn) + center + qsort(right, pivot_fn)
-    
-    
+
+
+
+def ssort(L):
+    for i in range(len(L)):
+        print(L)
+        m = L.index(min(L[i:]))
+        L[i], L[m] = L[m], L[i]
+    return L
+
+
+def fix_pivot(a):
+  return a[0]
+
+def random_pivot(a):
+  return random.choice(a)
 def time_search(sort_fn, mylist):
     """
     Return the number of milliseconds to run this
@@ -54,8 +68,10 @@ def compare_sort(sizes=[100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 10
       for each method to run on each value of n
     """
     ### TODO - sorting algorithms for comparison
-    qsort_fixed_pivot = lambda a: qsort(a, first_var)
-    qsort_random_pivot = lambda a: qsort(a, random_var)
+  
+    qsort_fixed_pivot = lambda a: qsort(a, fix_pivot)
+    qsort_random_pivot = lambda a: qsort(a, random_pivot)
+  
     tim_sort = sorted
     result = []
     for size in sizes:
@@ -67,7 +83,8 @@ def compare_sort(sizes=[100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 10
             len(mylist),
             time_search(qsort_fixed_pivot, mylist),
             time_search(qsort_random_pivot, mylist),
-            time_search(tim_sort, mylist)#since we wanna see timsort too
+            time_search(tim_sort, mylist),#since we wanna see timsort too
+            #time_search(ssort, mylist)
         ])
     return result
     ###
@@ -75,7 +92,8 @@ def compare_sort(sizes=[100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 10
 def print_results(results):
     """ change as needed for comparisons """
     print(tabulate.tabulate(results,
-                            headers=['n', 'qsort-fixed-pivot', 'qsort-random-pivot'],
+                            headers=['n', 'qsort-fixed-pivot', 'qsort-random-pivot', 
+                                    'timsort!', 'selection_sort'],
                             floatfmt=".3f",
                             tablefmt="github"))
 
